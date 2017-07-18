@@ -127,6 +127,8 @@ func (wd *WriteDriver) PutFile(path string, reader io.Reader, b bool) (int64, er
 		return 0, err
 	}
 
+	defer file.Close()
+
 	written, err := io.Copy(file, reader)
 	if err != nil {
 		fmt.Printf("Error: %v\n", err)
